@@ -334,14 +334,6 @@ app.get('/issues', async (req, res) => {
   }
 });
 
-// ... (আপনার বাকি রুট যেমন /issues/recent, /my-issues ইত্যাদি) ...
-
-
-
-
-
-
-
 
 // GET /issues/recent (Home পেজের জন্য)
 app.get('/issues/recent', async (req, res) => {
@@ -422,9 +414,9 @@ app.delete('/issues/:id', verifyAuth, async (req, res) => {
   }
 });
 
-// ---------------------------------
-// খ) Contribution Routes
-// ---------------------------------
+
+// Contribution Routes
+
 app.post('/contributions', verifyAuth, async (req, res) => {
   try {
     const payload = { ...req.body, email: req.user.email, userId: req.user.uid, date: new Date() };
@@ -487,9 +479,9 @@ app.get('/my-contributions', verifyAuth, async (req, res) => {
   }
 });
 
-// ---------------------------------
+
 // গ) Stats Route (Home পেজের জন্য)
-// ---------------------------------
+
 app.get('/stats', async (req, res) => {
   try {
     const totalIssues = await Issue.countDocuments();
@@ -497,7 +489,7 @@ app.get('/stats', async (req, res) => {
     const pending = await Issue.countDocuments({ status: 'ongoing' });
     
     res.status(200).json({
-      users: 0, // (ইউজার মডেল যোগ করার পর এটি ঠিক করতে হবে)
+      users: 0, 
       totalIssues,
       resolved,
       pending
@@ -508,12 +500,11 @@ app.get('/stats', async (req, res) => {
   }
 });
 
-// Dev-only debug route
+
 if (process.env.NODE_ENV !== 'production') {
   app.get('/_debug/whoami', verifyAuth, (req, res) => res.json(req.user));
 }
 
-// ===== ধাপ ৫: সার্ভার চালু করুন =====
 app.listen(process.env.PORT || 5000, () =>
   console.log(`API running on :${process.env.PORT || 5000}`)
 );
