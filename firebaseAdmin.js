@@ -27,19 +27,10 @@
 //   // Keep process alive; verifyAuth will 500 if admin not ready
 // }
 
-// export default admin;
 
 
 
 
-// // server/firebaseAdmin.js
-// import admin from 'firebase-admin';
-
-// let sa;
-// try {
-//   const raw = process.env.FIREBASE_SERVICE_ACCOUNT;
-//   if (!raw) throw new Error('FIREBASE_SERVICE_ACCOUNT env missing');
-//   sa = JSON.parse(raw);
 
 
 
