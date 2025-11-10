@@ -1,27 +1,5 @@
 
 
-
-
-// server/firebaseAdmin.js
-// import admin from 'firebase-admin';
-
-// let app;
-
-// try {
-//   const raw = process.env.FIREBASE_SERVICE_ACCOUNT;
-//   if (!raw) {
-//     throw new Error('FIREBASE_SERVICE_ACCOUNT env missing');
-//   }
-
-
-
-
-
-
-
-
-
-
 import admin from 'firebase-admin';
 
 try {
