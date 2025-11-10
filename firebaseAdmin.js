@@ -41,17 +41,7 @@
 //   if (!raw) throw new Error('FIREBASE_SERVICE_ACCOUNT env missing');
 //   sa = JSON.parse(raw);
 
-//   if (!admin.apps.length) {
-//     admin.initializeApp({
-//       credential: admin.credential.cert(sa),
-//       projectId: sa.project_id,
-//     });
-//   }
-// } catch (e) {
-//   console.error('🔥 Firebase Admin init failed:', e?.message || e);
-// }
 
-// export default admin;
 
 
 
