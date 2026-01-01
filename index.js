@@ -17,8 +17,9 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   origin: [
-    'http://localhost:5173', 
-    'https://clean-city-portal.web.app',
+    'http://localhost:5173',
+    'https://server-five-brown-34.vercel.app', 
+    'https://clean-city-world.netlify.app',
     // নিচে তোমার নতুন Netlify লিংকটি বসাবে যখন পাবে
     // 'https://YOUR-NETLIFY-LINK.netlify.app' 
   ], 
