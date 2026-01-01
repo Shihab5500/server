@@ -1,24 +1,33 @@
 import { Router } from 'express';
 import Contribution from '../models/Contribution.js';
-import { verifyAuth } from '../firebaseAdmin.js';
+import verifyAuth from '../middleware/verifyAuth.js'; // ✅ সঠিক পাথ
+
 const router = Router();
 
+// কন্ট্রিবিউশন করা
 router.post('/', verifyAuth, async (req, res) => {
-  const { issueId, amount, name, phone, address, additionalInfo } = req.body;
-  const email = req.user?.email;
-  const doc = await Contribution.create({ issueId, amount, name, email, phone, address, additionalInfo, date: new Date() });
-  res.status(201).json(doc);
+  try {
+      const payload = { 
+          ...req.body, 
+          email: req.user.email, 
+          userId: req.user.uid, 
+          date: new Date() 
+      };
+      const saved = await Contribution.create(payload);
+      res.status(201).json(saved);
+  } catch (err) {
+      res.status(500).json({ message: err.message });
+  }
 });
 
-router.get('/by-issue/:id', async (req, res) => {
-  const rows = await Contribution.find({ issueId: req.params.id }).sort({ createdAt: -1 });
-  res.json(rows);
-});
-
-router.get('/mine', verifyAuth, async (req, res) => {
-  const email = req.user?.email;
-  const rows = await Contribution.find({ email }).sort({ createdAt: -1 });
-  res.json(rows);
+// স্পেসিফিক ইস্যুর কন্ট্রিবিউশন লিস্ট
+router.get('/:issueId', async (req, res) => {
+  try {
+      const rows = await Contribution.find({ issueId: req.params.issueId }).sort({ date: -1 });
+      res.json(rows);
+  } catch (err) {
+      res.status(500).json({ message: err.message });
+  }
 });
 
 export default router;

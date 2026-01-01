@@ -1,6 +1,5 @@
-
-
 import admin from 'firebase-admin';
+import 'dotenv/config';
 
 try {
   const raw = process.env.FIREBASE_SERVICE_ACCOUNT;
@@ -13,7 +12,7 @@ try {
       credential: admin.credential.cert(sa),
       projectId: sa.project_id,
     });
-    console.log("✅ Firebase Admin initialized successfully");
+    console.log("✅ Firebase Admin initialized");
   }
 } catch (err) {
   console.error("🔥 Firebase Admin init failed:", err.message);
