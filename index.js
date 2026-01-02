@@ -17,9 +17,9 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   origin: [
-    'http://localhost:5173',                         // লোকাল ডেভেলপমেন্ট
-    'https://clean-city-world.netlify.app',          // ✅ আপনার লাইভ ফ্রন্টএন্ড (Netlify)
-    'https://server-five-brown-34.vercel.app'        // ব্যাকএন্ড ডোমেইন (Optional)
+    'http://localhost:5173',                      
+    'https://clean-city-world.netlify.app',          
+    'https://server-five-brown-34.vercel.app'        
   ],
   credentials: true,
 }));
@@ -57,7 +57,7 @@ app.get('/my-contributions', verifyAuth, async (req, res) => {
     } catch (err) { res.status(500).json({ message: err.message }); }
 });
 
-// Vercel Export
+
 if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {

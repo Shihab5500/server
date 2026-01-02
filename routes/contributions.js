@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import Contribution from '../models/Contribution.js';
-import verifyAuth from '../middleware/verifyAuth.js'; // ✅ সঠিক পাথ
+import verifyAuth from '../middleware/verifyAuth.js';
 
 const router = Router();
 
