@@ -97,7 +97,7 @@ app.use(express.json());
  */
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://clean-city-world.netlify.app",
+  "https://clean-city-world.vercel.app",
   process.env.FRONTEND_URL, // ✅ set this in Vercel (recommended)
 ].filter(Boolean);
 
